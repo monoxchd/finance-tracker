@@ -1,7 +1,7 @@
 class Stock < ActiveRecord::Base
   # https://docs.google.com/document/d/1184B5khBBQXeMKCW9Gyjuk7304CO-tuPlKoBPRROySQ/edit?ts=594c22af#
-#  has_many :user_stocks
-#  has_many :users, through: user_stocks
+  has_many :user_stocks
+  has_many :users, through: :user_stocks
   
   def self.find_by_ticker(ticker_symbol)
     where(ticker: ticker_symbol).first
@@ -11,7 +11,7 @@ class Stock < ActiveRecord::Base
     looked_up_stock = Stock.api_lookup(ticker_symbol)
     return nil unless looked_up_stock.present?
     
-    new_stock = new(ticker: looked_up_stock.symbol, name: looked_up_stock.name)
+    new_stock = new(ticker: looked_up_stock.symbol, name: looked_up_stock.symbol)
     new_stock.last_price = new_stock.price
     new_stock
   end
