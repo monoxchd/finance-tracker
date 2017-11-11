@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
+// turbolinks removed for search-bar issues
+// require turbolinks
 //= require_tree .
 
 
